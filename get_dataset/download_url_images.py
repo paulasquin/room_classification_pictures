@@ -1,3 +1,4 @@
+import __future__
 import subprocess
 import urllib.request
 import socket
@@ -53,6 +54,8 @@ def download_images(filename):
                     os.remove(filepath)
             except:
                 os.remove(filepath)
+        except KeyboardInterrupt:
+            return -1
         except:
             print(str(i) + " : ko")
 
@@ -60,7 +63,8 @@ def download_images(filename):
 
 def main():
     for topic in get_topics():
-        download_images(topic)
+        if download_images(topic) == -1:
+            return -1
 
 if __name__ == '__main__':
     main()
