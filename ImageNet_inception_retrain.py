@@ -2,9 +2,6 @@ import os
 import threading
 import subprocess
 
-echo = ""
-
-
 def getExportNumber(tensorFolder):
     """ Get the number of the export folder looking at already existing folders
     Handle the presence of '_precisions' at the end of the folder name """
@@ -34,6 +31,8 @@ def getExportNumber(tensorFolder):
 def runRetrain():
     tensorFolder = "tensorflow"
     image_dir = "JPG"
+    if not os.path.isdir(tensorFolder):
+        os.mkdir(tensorFolder)
     exportNumber = getExportNumber(tensorFolder)
     exportPath = str(tensorFolder) + "/export_" + str(exportNumber)
     os.mkdir(exportPath)
@@ -45,15 +44,12 @@ def runRetrain():
 
     cmd = "python3 retrain.py" \
           " --image_dir " + str(image_dir) + \
-          " --output_graph " + str(tensorFolder) + "/scannet_inception.db" + \
-          " --output_labels " + str(tensorFolder) + "/scannet_labels.txt" + \
+          " --output_graph " + str(tensorFolder) + "/imagenet_inception.db" + \
+          " --output_labels " + str(tensorFolder) + "/imagenet_labels.txt" + \
           " --saved_model_dir " + exportPath + "/model/" + \
           " --print_misclassified_test_images" + \
           " --validation_batch_size=-1" + \
-          " --how_many_training_steps 4000" + \
-          " --suffix -0.4"
-    global echo
-    echo = cmd
+          " --how_many_training_steps 4000"
     print(cmd)
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
     out, err = p.communicate()
@@ -87,7 +83,6 @@ def main():
         # Wait for user to Make the programm stop
         input("Press a key to stop the program and stop tensorboard")
 
-        print(echo)
         return 0
 
 
