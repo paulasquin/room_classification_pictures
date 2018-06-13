@@ -12,7 +12,7 @@ Then you can choose the branch that interest you and download the "synset.txt" f
 Make sure the .txt file begin with "wantedLabel_"  
 
 Finally, you can launch  
-``` 
-cd get_dataset  
-python3 download_url_images.py```  
-
+``` python   
+cd get_dataset   
+python3 download_url_images.py    
+```
