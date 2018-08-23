@@ -2,6 +2,7 @@ import os
 import threading
 import subprocess
 
+
 def getExportNumber(tensorFolder):
     """ Get the number of the export folder looking at already existing folders
     Handle the presence of '_precisions' at the end of the folder name """
@@ -24,7 +25,6 @@ def getExportNumber(tensorFolder):
 
     if len(lesNum) != 0:
         num = max(lesNum) + 1
-
     return num
 
 
@@ -40,7 +40,6 @@ def runRetrain():
     print("exportPath : " + exportPath)
     if not os.path.isdir(tensorFolder):
         os.mkdir(tensorFolder)
-
 
     cmd = "python3 retrain.py" \
           " --image_dir " + str(image_dir) + \
@@ -84,8 +83,6 @@ def main():
         input("Press a key to stop the program and stop tensorboard")
 
         return 0
-
-
     except KeyboardInterrupt:
         threadR._stop()
         threadT._stop()
