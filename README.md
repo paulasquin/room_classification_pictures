@@ -18,5 +18,12 @@ cd get_dataset
 python3 download_url_images.py    
 ```  
   
-## Retrain and use the model  
-Just follow the tutorial [image retraining on tensorflow.org](https://www.tensorflow.org/hub/tutorials/image_retraining)
+## Retrain the model
+
+Check your parameters in [ImageNet_inception_retrain.py](ImageNet_inception_retrain.py) and run  
+```
+sudo python3 ImageNet_inception_retrain.py
+```
+
+## Use the model  
+Just follow the tutorial [image retraining on tensorflow.org](https://www.tensorflow.org/hub/tutorials/image_retraining) using [label_image.py](label_image.py)
