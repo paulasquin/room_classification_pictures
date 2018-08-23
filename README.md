@@ -1,4 +1,4 @@
-# Image_Room_Classification  
+# room_classification_pictures
 Project by Paul Asquin for Awabot - Summer 2018 paul.asquin@gmail.com  
 
 ## Download the dataset
