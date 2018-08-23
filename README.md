@@ -1,4 +1,5 @@
-# Image_Room_Classification
+# Image_Room_Classification  
+Project by Paul Asquin for Awabot - Summer 2018 paul.asquin@gmail.com  
 
 ## Download the dataset
 
@@ -15,4 +16,7 @@ Finally, you can launch
 ``` python   
 cd get_dataset   
 python3 download_url_images.py    
-```
+```  
+  
+## Retrain and use the model  
+Just follow the tutorial [image retraining on tensorflow.org](https://www.tensorflow.org/hub/tutorials/image_retraining)
