@@ -1,3 +1,4 @@
+import __future__
 import subprocess
 import urllib.request
 import socket
@@ -17,13 +18,18 @@ def get_topics():
 
 
 def download_images(filename):
+    jpgPath = "../JPG"
+
+    if not os.path.isdir(jpgPath):
+        os.mkdir(jpgPath)
+
     f = open(filename, 'r')
     #Extracting room type
     room_name = filename.split("_")[0]
     print(room_name)
     #Creation directory for pictures
     try:
-        os.mkdir(str(os.getcwd()) + "/" + str(room_name))
+        os.mkdir(jpgPath + "/" + str(room_name))
     except:
         print("folder " + str(room_name) + " already exist")
 
@@ -33,7 +39,7 @@ def download_images(filename):
     i = 0
     for ligne in f:
         ligne = ligne.replace("\n", "")
-        filepath = os.getcwd() + "/" + str(room_name) + "/" + str(room_name) + "_" + str(i) + ".jpg"
+        filepath = jpgPath + "/" + str(room_name) + "/" + str(room_name) + "_" + str(i) + ".jpg"
         try:
             urllib.request.urlretrieve(ligne, filepath)
             try:
@@ -48,6 +54,8 @@ def download_images(filename):
                     os.remove(filepath)
             except:
                 os.remove(filepath)
+        except KeyboardInterrupt:
+            return -1
         except:
             print(str(i) + " : ko")
 
@@ -55,7 +63,8 @@ def download_images(filename):
 
 def main():
     for topic in get_topics():
-        download_images(topic)
+        if download_images(topic) == -1:
+            return -1
 
 if __name__ == '__main__':
     main()
